@@ -7,10 +7,6 @@ class CreatePlaces < ActiveRecord::Migration
       t.string :address
 
 
-
-
-
-
       t.timestamps
     end
   end
