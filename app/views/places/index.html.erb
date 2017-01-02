@@ -1,8 +1,15 @@
-<% @places.each  do |place| %>
-<div class="booyah-box col-xs-10 col-xs-offset-1">
-<h1><%= place.name %> </h1>
-<i><%= place.address %></i><br /><br />
-<p><%= place.description %></p><br />
-</div>
 
-<%end%>
+    </div>
+
+    <% @places.each  do |place| %>
+    <div class="booyah-box col-xs-10 col-xs-offset-1">
+      <h1><%= place.name %> </h1>
+      <i><%= place.address %></i><br /><br />
+      <p><%= place.description %></p><br />
+    </div>
+
+    <%end%>
+
+<div class="center">
+      <%= will_paginate @places, renderer: BootstrapPagination::Rails, inner_window: 1, outer_window: 1, previous_label: "«" , next_label: "»" %>
+      </div>
