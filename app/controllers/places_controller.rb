@@ -13,7 +13,7 @@ class PlacesController < ApplicationController
     redirect_to root_path
   end
 
-Private
+private
 
 def place_params
   params.required(:place).permit(:name, :description, :address)
