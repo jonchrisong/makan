@@ -1,5 +1,5 @@
 class PlacesController < ApplicationController
-before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create]
 
 
   def index
@@ -16,11 +16,19 @@ before_action :authenticate_user!, only: [:new, :create]
     redirect_to root_path
   end
 
-private
+  def show
+    @place = Place.find(params[:id])
+  end
 
-def place_params
-  params.required(:place).permit(:name, :description, :address)
-end
+
+
+
+
+  private
+
+  def place_params
+    params.required(:place).permit(:name, :description, :address)
+  end
 
 
 
