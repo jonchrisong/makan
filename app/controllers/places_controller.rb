@@ -1,5 +1,5 @@
 class PlacesController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
 
 
   def index
@@ -21,30 +21,36 @@ class PlacesController < ApplicationController
   end
 
   def edit
-    @place = Place.find(params[:id])  
+    @place = Place.find(params[:id])
+    if @place.user != current_user
+      return render file: Rails.root.join('public', 'not_found.html.erb'), status: :not_found, layout: false
+    end
   end
 
   def update
     @place = Place.find(params[:id])
-    @place.update_attributes(place_params)
-    redirect_to root_path
+    if @place.user != current_user
+      return render file: Rails.root.join('public', 'not_found.html.erb'), status: :not_found, layout: false
+    end
+      @place.update_attributes(place_params)
+      redirect_to root_path
+    end
+
+    def destroy
+      @place = Place.find(params[:id])
+      @place.destroy
+      redirect_to root_path
+    end
+
+
+
+    private
+
+    def place_params
+      params.required(:place).permit(:name, :description, :address)
+    end
+
+
+
+
   end
-
-  def destroy
-    @place = Place.find(params[:id])
-    @place.destroy
-    redirect_to root_path
-  end
-
-
-
-  private
-
-  def place_params
-    params.required(:place).permit(:name, :description, :address)
-  end
-
-
-
-
-end
