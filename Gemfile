@@ -49,5 +49,7 @@ gem 'will_paginate-bootstrap', '~> 1.0', '>= 1.0.1'
 gem 'simple_form'
 gem 'devise', '>= 3.2.4'
 gem 'tzinfo-data'
+gem 'geocoder', '1.3.4'
+gem 'figaro', '>= 1.0.0'
 
 
